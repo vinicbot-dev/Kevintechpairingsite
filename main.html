@@ -1,802 +1,901 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Vinic Tech Sessions | Ultra Pro Max</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta name="theme-color" content="#071028" />
+  <meta name="description" content="Jexploit— Advanced WhatsApp Bot solution with automation and integration features." />
+
+  <title>JEXPLOIT | WHATSAPP BOT</title>
+
+  <link rel="icon" type="image/png" href="https://files.catbox.moe/qwpimr.png">
+  <link rel="apple-touch-icon" href="https://files.catbox.moe/qwpimr.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --primary:#0b3a66;
+      --secondary:#0f6fb2;
+      --accent:#00b4ff;
+      --dark:#071028;
+      --darker:#031423;
+      --text:#e6eef6;
+      --gray:#9fb6d1;
+      --card-bg:rgba(255,255,255,0.035);
+      --shadow:0 10px 30px rgba(2,6,23,0.6);
+      --transition:all 0.34s cubic-bezier(.4,0,.2,1);
     }
 
-    :root {
-      --neon-cyan: #00ffcc;
-      --neon-pink: #ff2e63;
-      --neon-purple: #7209b7;
-      --neon-blue: #4361ee;
-      --dark-bg: #0a0a0a;
-      --card-bg: rgba(15, 15, 25, 0.8);
+    *{
+      margin:0;padding:0;box-sizing:border-box;
+      transition:var(--transition);
     }
 
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: var(--dark-bg);
-      color: var(--neon-cyan);
-      min-height: 100vh;
+    body{
+      background:var(--dark);
+      font-family:'Poppins',sans-serif;
+      color:var(--text);
+      overflow-x:hidden;
+      min-height:100vh;
       position: relative;
-      overflow-x: hidden;
     }
 
-    /* Advanced Particle Background */
-    #particles-js {
+    /* ---------------- PRELOADER ---------------- */
+    #preloader {
       position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      background: radial-gradient(ellipse at center, #0a0a1a 0%, #000000 100%);
+      top:0;left:0;
+      width:100%;height:100%;
+      background:var(--dark);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      z-index:9999;
     }
 
-    /* Animated Grid Overlay */
-    .cyber-grid {
+    .loader {
+      width:50px;height:50px;
+      border:5px solid rgba(255,255,255,0.2);
+      border-top-color:var(--accent);
+      border-radius:50%;
+      animation:spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      from {transform:rotate(0deg);}
+      to {transform:rotate(360deg);}
+    }
+
+    /* ---------------- SIDEBAR ---------------- */
+    #sidebar {
+      position: fixed;
+      top:0;left:-260px;
+      width:240px;height:100%;
+      background:rgba(4,12,28,0.95);
+      backdrop-filter:blur(10px);
+      padding:20px;
+      border-right:1px solid rgba(255,255,255,0.05);
+      z-index:2000;
+      transition:0.4s ease;
+      box-shadow: 5px 0 25px rgba(0,0,0,0.3);
+    }
+    #sidebar.show {left:0;}
+
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    #sidebar h2 {
+      color:var(--accent);
+      font-size:1.4rem;
+      margin: 0;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.4rem;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--accent);
+      transform: rotate(90deg);
+    }
+
+    #sidebar a {
+      display:flex;
+      align-items: center;
+      gap: 12px;
+      padding:14px 12px;
+      text-decoration:none;
+      color:var(--text);
+      font-size:1rem;
+      border-radius:8px;
+      margin-bottom:8px;
+      background:rgba(255,255,255,0.03);
+      transition: all 0.3s ease;
+    }
+
+    #sidebar a i {
+      width: 20px;
+      text-align: center;
+    }
+
+    #sidebar a:hover {
+      background:var(--accent);
+      color:#000;
+      transform: translateX(5px);
+    }
+
+    /* ---------------- ANIMATED BACKGROUND ---------------- */
+    .animated-bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
+      overflow: hidden;
+    }
+    
+    .bg-gradient {
+      position: absolute;
+      width: 100%;
+      height: 100%;
       background: 
-        linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: gridMove 40s linear infinite;
-      opacity: 0.5;
+        radial-gradient(circle at 10% 10%, rgba(15,111,178,0.15) 0%, transparent 25%),
+        radial-gradient(circle at 90% 85%, rgba(0,180,255,0.12) 0%, transparent 30%),
+        radial-gradient(circle at 50% 50%, rgba(11,58,102,0.1) 0%, transparent 50%);
+      animation: gradientShift 20s ease infinite;
+    }
+    
+    @keyframes gradientShift {
+      0% {background-position: 0% 0%;transform: scale(1);}
+      33% {background-position: 100% 0%;transform: scale(1.05);}
+      66% {background-position: 0% 100%;transform: scale(1.02);}
+      100% {background-position: 0% 0%;transform: scale(1);}
     }
 
-    @keyframes gridMove {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(-50px, -50px); }
+    .particles {
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      pointer-events: none;
+    }
+    
+    .particle {
+      position:absolute;
+      border-radius:50%;
+      background:rgba(0,180,255,0.4);
+      box-shadow:0 0 10px rgba(0,180,255,0.6);
+      animation:float 15s infinite linear;
     }
 
-    /* 3D Profile Section */
-    .profile-section {
+    @keyframes float {
+      0% {transform:translateY(0) translateX(0) rotate(0deg);opacity:0;}
+      10%{opacity:1;}
+      90%{opacity:1;}
+      100% {transform:translateY(-100vh) translateX(100px) rotate(360deg);opacity:0;}
+    }
+
+    .pulse {
+      position:absolute;
+      width:100%;
+      height:100%;
+      background:radial-gradient(circle, rgba(0,180,255,0.1) 0%, transparent 70%);
+      animation:pulseEffect 8s infinite ease-in-out;
+    }
+    
+    @keyframes pulseEffect {
+      0%,100%{transform:scale(1);opacity:.5;}
+      50%{transform:scale(1.2);opacity:.8;}
+    }
+
+    /* ---------------- NAVBAR ---------------- */
+    .navbar{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      background:rgba(4,12,28,0.7);
+      backdrop-filter:blur(6px);
+      padding:14px 20px;
+      z-index:1000;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .menu-btn{
+      font-size:1.6rem;
+      color:var(--accent);
+      cursor:pointer;
+      background:none;
+      border:none;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-btn:hover {
+      background: rgba(0,180,255,0.1);
+      transform: scale(1.1);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--text);
+      text-decoration:none;
+    }
+
+    .logo-icon{
+      font-size:1.8rem;
+      color:var(--accent);
+    }
+    
+    .logo-text{
+      font-weight:800;
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    /* ---------------- HERO SECTION ---------------- */
+    .hero{
+      padding:100px 20px 40px;
+      text-align:center;
+      margin-top:60px;
+    }
+    
+    .hero-title{
+      font-size:2.6rem;
+      font-weight:800;
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      margin-bottom:20px;
+    }
+    
+    .hero-subtitle{
+      color:var(--gray);
+      font-size:1rem;
+      max-width:760px;
+      margin:0 auto 30px;
+      line-height:1.6;
+    }
+
+    /* ---------------- PAIR CARD SECTION ---------------- */
+    .pair-section {
+      padding: 40px 20px 60px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(11,58,102,0.04), rgba(15,111,178,0.02));
       display: flex;
       justify-content: center;
-      margin: 20px 0 40px;
-      position: relative;
-      z-index: 10;
-      perspective: 1000px;
-    }
-
-    .profile-container {
-      width: 200px;
-      height: 200px;
-      position: relative;
-      transform-style: preserve-3d;
-      animation: float3d 6s ease-in-out infinite;
-    }
-
-    .profile-image {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      position: absolute;
-      box-shadow: 
-        0 0 30px var(--neon-cyan),
-        inset 0 0 30px rgba(0, 255, 204, 0.3);
-      border: 3px solid var(--neon-cyan);
-      transform: translateZ(20px);
-      animation: rotate3d 20s linear infinite;
-    }
-
-    .profile-border {
-      position: absolute;
-      width: 110%;
-      height: 110%;
-      top: -5%;
-      left: -5%;
-      border-radius: 50%;
-      background: conic-gradient(
-        from 0deg,
-        var(--neon-pink),
-        var(--neon-purple),
-        var(--neon-blue),
-        var(--neon-cyan),
-        var(--neon-pink)
-      );
-      animation: rotate 4s linear infinite;
-      box-shadow: 0 0 40px rgba(255, 46, 99, 0.5);
-    }
-
-    .profile-border::before {
-      content: '';
-      position: absolute;
-      width: 94%;
-      height: 94%;
-      top: 3%;
-      left: 3%;
-      background: var(--dark-bg);
-      border-radius: 50%;
-      z-index: -1;
-    }
-
-    @keyframes float3d {
-      0%, 100% { transform: translateY(0) rotateX(5deg) rotateY(5deg); }
-      50% { transform: translateY(-20px) rotateX(-5deg) rotateY(-5deg); }
-    }
-
-    @keyframes rotate3d {
-      0% { transform: translateZ(20px) rotateY(0deg); }
-      100% { transform: translateZ(20px) rotateY(360deg); }
-    }
-
-    /* Container */
-    .container {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 50px;
-      position: relative;
-      z-index: 1;
-      margin-top: 80px;
+      min-height: 70vh;
     }
 
-    /* Enhanced News Ticker */
-    .news-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      font-family: 'Orbitron', sans-serif;
-      background: rgba(10, 10, 20, 0.9);
-      backdrop-filter: blur(10px);
-      border-bottom: 2px solid var(--neon-cyan);
-      box-shadow: 0 5px 30px rgba(0, 255, 204, 0.3);
-    }
-
-    .news-container .title {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 40%;
-      background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple));
-      padding: 12px 24px;
-      color: #fff;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
-      z-index: 1001;
-      font-size: 1.1rem;
-      box-shadow: 0 0 20px rgba(255, 46, 99, 0.5);
-    }
-
-    .news-container .ticker {
+    .pair-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(15,111,178,0.12);
+      border-radius: 16px;
+      padding: 40px 30px;
+      box-shadow: var(--shadow);
+      max-width: 500px;
       width: 100%;
-      overflow: hidden;
-      margin-left: 40%;
+      margin: 0 auto;
+      backdrop-filter: blur(10px);
     }
 
-    .news-container ul {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 12px 0;
-      animation: scroll 25s infinite linear;
+    .channel-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--secondary));
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,180,255,0.3);
     }
 
-    .news-container ul li {
-      white-space: nowrap;
-      padding: 0 30px;
-      color: var(--neon-cyan);
+    .channel-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,180,255,0.4);
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+    }
+
+    .pair-card h1 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .pair-card > p {
+      color: var(--gray);
+      margin-bottom: 25px;
+      font-size: 1rem;
+    }
+
+    .pair-card label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .pair-card input {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 25px;
+      border: 1px solid rgba(15,111,178,0.2);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .pair-card input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0,180,255,0.2);
+    }
+
+    .pair-card input::placeholder {
+      color: rgba(159,182,209,0.5);
+    }
+
+    .pair-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      border-radius: 10px;
+      color: white;
       font-size: 1.1rem;
       font-weight: 600;
-      text-shadow: 0 0 10px var(--neon-cyan);
-      position: relative;
-    }
-
-    .news-container ul li::after {
-      content: "✦";
-      position: absolute;
-      top: 50%;
-      right: -5px;
-      transform: translateY(-50%);
-      color: var(--neon-pink);
-      text-shadow: 0 0 10px var(--neon-pink);
-    }
-
-    @keyframes scroll {
-      from { transform: translateX(100%); }
-      to { transform: translateX(-100%); }
-    }
-
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      padding: 60px 40px;
-      background: var(--card-bg);
-      border: 2px solid var(--neon-cyan);
-      border-radius: 20px;
-      box-shadow: 
-        0 0 40px rgba(0, 255, 204, 0.4),
-        inset 0 0 40px rgba(0, 255, 204, 0.1);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      transform-style: preserve-3d;
-      transform: translateZ(0);
-      transition: all 0.5s ease;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(0, 255, 204, 0.1),
-        transparent
-      );
-      transform: rotate(45deg);
-      animation: shine 6s infinite;
-    }
-
-    .hero:hover {
-      transform: translateY(-10px) translateZ(10px);
-      box-shadow: 
-        0 15px 50px rgba(0, 255, 204, 0.6),
-        inset 0 0 50px rgba(0, 255, 204, 0.2);
-    }
-
-    .hero h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3.5rem;
-      background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(255, 46, 99, 0.5);
-      margin-bottom: 20px;
-      letter-spacing: 2px;
-      font-weight: 900;
-    }
-
-    .hero p {
-      font-size: 1.3rem;
-      color: var(--neon-cyan);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
-      text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
-    }
-
-    /* Features Section */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      width: 100%;
-    }
-
-    .feature-card {
-      background: var(--card-bg);
-      border: 2px solid var(--neon-cyan);
-      border-radius: 15px;
-      padding: 30px;
-      text-align: center;
-      transition: all 0.5s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      transform-style: preserve-3d;
-      transform: translateZ(0);
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(0, 255, 204, 0.1),
-        transparent
-      );
-      transition: left 0.7s ease;
-    }
-
-    .feature-card:hover::before {
-      left: 100%;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-15px) translateZ(20px) rotateX(5deg);
-      box-shadow: 
-        0 20px 40px rgba(0, 255, 204, 0.4),
-        inset 0 0 30px rgba(0, 255, 204, 0.1);
-      border-color: var(--neon-pink);
-    }
-
-    .feature-card h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
-      color: var(--neon-pink);
-      margin-bottom: 15px;
-      text-shadow: 0 0 15px rgba(255, 46, 99, 0.5);
-      font-weight: 700;
-    }
-
-    .feature-card p {
-      font-size: 1.1rem;
-      color: var(--neon-cyan);
-      flex-grow: 1;
-      line-height: 1.6;
-    }
-
-    .feature-card .btn {
-      width: 100%;
-      padding: 1.2em;
-      font-size: 1.1rem;
-      margin-top: auto;
-    }
-
-    /* About & Contact Sections */
-    .about, .contact {
-      background: var(--card-bg);
-      border: 2px solid var(--neon-cyan);
-      border-radius: 15px;
-      padding: 40px;
-      text-align: center;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      transition: all 0.5s ease;
-    }
-
-    .about:hover, .contact:hover {
-      transform: translateY(-10px);
-      box-shadow: 
-        0 15px 40px rgba(0, 255, 204, 0.4),
-        inset 0 0 40px rgba(0, 255, 204, 0.1);
-    }
-
-    .about h2, .contact h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.5rem;
-      background: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
-      font-weight: 800;
-    }
-
-    .about p, .contact p {
-      font-size: 1.2rem;
-      color: var(--neon-cyan);
-      max-width: 900px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    /* Buttons */
-    .btn {
-      background: transparent;
-      border: 2px solid var(--neon-cyan);
-      border-radius: 12px;
       cursor: pointer;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      color: var(--neon-cyan);
-      text-shadow: 0 0 10px var(--neon-cyan);
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      font-weight: 700;
-      letter-spacing: 1px;
-      padding: 1em 1.5em;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(11,58,102,0.3);
+      font-family: 'Poppins', sans-serif;
     }
 
-    .btn::before, .btn::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 255, 204, 0.4), transparent);
-      transition: all 0.6s ease;
-    }
-
-    .btn::after {
-      left: 100%;
-      transition-delay: 0.2s;
-    }
-
-    .btn:hover::before {
-      left: 100%;
-    }
-
-    .btn:hover::after {
-      left: -100%;
-    }
-
-    .btn:hover {
-      background: rgba(0, 255, 204, 0.15);
-      box-shadow: 
-        0 0 25px rgba(0, 255, 204, 0.7),
-        inset 0 0 15px rgba(0, 255, 204, 0.2);
-      color: #fff;
-      border-color: #fff;
+    .pair-btn:hover {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
       transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(11,58,102,0.4);
     }
 
-    .btn:active {
-      transform: scale(0.97);
-      filter: brightness(1.2);
+    .pair-btn:active {
+      transform: translateY(0);
     }
 
-    /* Footer */
-    .footer {
-      margin-top: 60px;
-      padding: 30px;
-      background: var(--card-bg);
-      border: 2px solid var(--neon-cyan);
-      border-radius: 15px;
-      text-align: center;
-      color: var(--neon-cyan);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1rem;
-      text-shadow: 0 0 10px var(--neon-cyan);
-      width: 100%;
-      backdrop-filter: blur(10px);
-    }
-
-    .footer b {
-      color: var(--neon-pink);
-      text-shadow: 0 0 10px rgba(255, 46, 99, 0.5);
-    }
-
-    .footer .social-links {
+    #pair {
       margin-top: 25px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 25px;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .footer .social-links a {
-      color: var(--neon-cyan);
-      font-size: 2rem;
-      transition: all 0.4s ease;
-      position: relative;
+      padding: 20px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      min-height: 80px;
       display: flex;
-      justify-content: center;
       align-items: center;
-      width: 70px;
-      height: 70px;
+      justify-content: center;
+    }
+
+    #pair font {
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    #pair font:hover {
+      background: rgba(0,180,255,0.1);
+    }
+
+    /* ---------------- FEATURES SECTION ---------------- */
+    .features{
+      padding:80px 20px;
+      text-align:center;
+      max-width:1200px;
+      margin:0 auto;
+    }
+    
+    .section-title{
+      font-size:1.8rem;
+      font-weight:800;
+      margin-bottom:40px;
+      color:var(--text);
+    }
+    
+    .features-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+      margin-top:40px;
+    }
+
+    .feature-card{
+      position:relative;
+      background:linear-gradient(135deg,rgba(11,58,102,0.08),rgba(0,180,255,0.05));
+      background-size:200% 200%;
+      animation:cardGradient 6s ease-in-out infinite;
+      border-radius:14px;
+      padding:25px 20px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(15,111,178,0.08);
+      overflow:hidden;
+      transition:transform .35s ease,box-shadow .35s ease;
+    }
+
+    @keyframes cardGradient{
+      0%{background-position:0 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0 50%}
+    }
+
+    .feature-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 15px 30px rgba(0,180,255,0.15);
+    }
+    
+    .feature-card h3{
+      color:var(--accent);
+      font-weight:700;
+      margin-bottom:15px;
+      font-size:1.3rem;
+    }
+    
+    .feature-card p{
+      color:var(--gray);
+      font-size:0.95rem;
+      line-height:1.6;
+    }
+
+    /* ---------------- FOOTER ---------------- */
+    footer{
+      background:var(--darker);
+      padding:40px 20px 20px;
+      margin-top:60px;
+      border-top:1px solid rgba(15,111,178,0.1);
+    }
+    
+    .footer-content{
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+      margin-bottom:30px;
+    }
+    
+    .footer-logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      margin-bottom:15px;
+    }
+    
+    .footer-logo-icon{
+      font-size:1.8rem;
+      color:var(--accent);
+    }
+    
+    .footer-logo-text{
+      font-weight:800;
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      font-size:1.3rem;
+    }
+    
+    .footer-description{
+      color:var(--gray);
+      line-height:1.6;
+      font-size:0.95rem;
+    }
+    
+    .footer-social{
+      display:flex;
+      gap:20px;
+      justify-content:center;
+      margin-top:30px;
+    }
+    
+    .footer-social a{
+      color:var(--gray);
+      font-size:1.5rem;
+      transition:color 0.3s ease;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 50%;
-      border: 2px solid var(--neon-cyan);
-      box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
-      margin: 0 auto;
+      background: rgba(255,255,255,0.03);
+    }
+    
+    .footer-social a:hover{
+      color:var(--accent);
+      transform:translateY(-3px);
+      background: rgba(0,180,255,0.1);
+    }
+    
+    .copyright{
+      text-align:center;
+      color:var(--gray);
+      font-size:0.9rem;
+      margin-top:30px;
+      padding-top:20px;
+      border-top:1px solid rgba(255,255,255,0.05);
     }
 
-    .footer .social-links a:hover {
-      color: var(--neon-pink);
-      text-shadow: 0 0 15px var(--neon-pink);
-      border-color: var(--neon-pink);
-      box-shadow: 0 0 25px rgba(255, 46, 99, 0.7);
-      transform: translateY(-5px) scale(1.1);
-    }
-
-    /* Animations */
-    @keyframes shine {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-    }
-
-    /* Responsive Design */
-    @media (max-width: 1024px) {
-      .features {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .hero h1 {
-        font-size: 2.8rem;
-      }
-    }
-
+    /* ---------------- RESPONSIVE DESIGN ---------------- */
     @media (max-width: 768px) {
-      .container {
-        padding: 15px;
-        margin-top: 100px;
-        gap: 40px;
-      }
-
-      .news-container .title {
-        width: 50%;
-        font-size: 0.9rem;
-        padding: 10px 15px;
-      }
-
-      .news-container .ticker {
-        margin-left: 50%;
-      }
-
-      .news-container ul li {
-        font-size: 0.9rem;
-        padding: 0 20px;
-      }
-
-      .hero {
-        padding: 40px 20px;
-      }
-
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-
-      .hero p {
-        font-size: 1.1rem;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-        gap: 25px;
-      }
-
-      .feature-card {
-        padding: 25px;
-      }
-
-      .feature-card h3 {
-        font-size: 1.5rem;
-      }
-
-      .about, .contact {
-        padding: 30px 20px;
-      }
-
-      .about h2, .contact h2 {
+      .hero-title {
         font-size: 2rem;
       }
-
-      .about p, .contact p {
-        font-size: 1.1rem;
+      
+      .section-title {
+        font-size: 1.5rem;
       }
-
-      .profile-container {
-        width: 160px;
-        height: 160px;
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
       }
-
-      .footer .social-links {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+      
+      .pair-card {
+        padding: 30px 20px;
       }
-
-      .footer .social-links a {
-        width: 60px;
-        height: 60px;
-        font-size: 1.7rem;
+      
+      .pair-card h1 {
+        font-size: 1.5rem;
+      }
+      
+      #sidebar {
+        width: 220px;
       }
     }
 
     @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 1.8rem;
+      .hero-title {
+        font-size: 1.7rem;
       }
       
-      .profile-container {
-        width: 140px;
-        height: 140px;
+      .hero-subtitle {
+        font-size: 0.9rem;
       }
       
-      .btn {
-        font-size: 1rem;
-        padding: 0.9em 1.2em;
+      .navbar {
+        padding: 12px 15px;
+      }
+      
+      .logo-text {
+        font-size: 1.1rem;
+      }
+      
+      .pair-section {
+        padding: 20px 15px 40px;
+      }
+      
+      .pair-card {
+        padding: 25px 15px;
+      }
+      
+      .pair-card h1 {
+        font-size: 1.3rem;
+      }
+      
+      .footer-social a {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
       }
     }
   </style>
 </head>
+
 <body>
-  <!-- Advanced Particle Background -->
-  <div id="particles-js"></div>
-  <div class="cyber-grid"></div>
 
-  <!-- Enhanced News Ticker -->
-  <div class="news-container">
-    <div class="title">🚀 Vinic Tech Ultra Pro Max</div>
-    <div class="ticker">
-      <ul>
-        <li>Welcome to the Ultimate Session Experience!</li>
-        <li>Get your QR Codes & Pairing Codes Instantly</li>
-        <li>DSF CREW DEVS - Premium Quality</li>
-        <li>Advanced Security & Lightning Fast Performance</li>
-      </ul>
-    </div>
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="loader"></div>
   </div>
 
-  <div class="container">
-    <!-- 3D Profile Section -->
-    <div class="profile-section">
-      <div class="profile-container">
-        <div class="profile-border"></div>
-        <img src="https://files.catbox.moe/uw1n4n.jpg" alt="vinic-xmd" class="profile-image">
-      </div>
+  <!-- SIDEBAR -->
+  <div id="sidebar">
+    <div class="sidebar-header">
+      <h2>JEXPLOIT BOT</h2>
+      <button class="close-btn" onclick="toggleSidebar()">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
-
-    <!-- Hero Section -->
-    <div class="hero">
-      <h1>ULTRA PRO MAX SESSIONS</h1>
-      <p>Experience the next generation of WhatsApp bot sessions. Get your QR or pair code, deploy Arslan-MD with advanced features, and join the elite tech community!</p>
-    </div>
-
-    <!-- Features Section -->
-    <div class="features">
-      <div class="feature-card">
-        <h3><i class="fas fa-qrcode"></i> QR Code Pairing</h3>
-        <p>Advanced QR code system with instant scanning and secure session ID generation. Lightning fast connection with enhanced security protocols.</p>
-        <button onclick="window.location.href='/qr'" class="btn">Get Premium QR</button>
-      </div>
-      <div class="feature-card">
-        <h3><i class="fas fa-key"></i> Pair Code System</h3>
-        <p>Enter your number and receive an encrypted pairing code. No scanning required. Advanced encryption ensures maximum security.</p>
-        <button onclick="window.location.href='/pair'" class="btn">Generate Code</button>
-      </div>
-      <div class="feature-card">
-        <h3><i class="fas fa-rocket"></i> Deploy Arslan-MD</h3>
-        <p>One-click deployment with advanced features. Get your own bot running in minutes with premium functionality and 24/7 support.</p>
-        <button onclick="window.location.href='https://github.com/Kevintech-hub/Vinic-Xmd-'" class="btn">Deploy Now</button>
-      </div>
-    </div>
-
-    <!-- About Section -->
-    <div class="about">
-      <h2>About Ultra Pro Max</h2>
-      <p>We're revolutionizing the WhatsApp bot experience with cutting-edge technology. Our Ultra Pro Max version delivers unprecedented performance, security, and features. Join thousands of satisfied users who have upgraded to the premium Arslan-MD experience.</p>
-    </div>
-
-    <!-- Contact Section -->
-    <div class="contact">
-      <h2>Elite Support</h2>
-      <p>Our premium support team is available 24/7 to assist you with any issues. Contact us via SMS, WhatsApp, or Telegram for instant assistance with deployment, troubleshooting, or custom requests.</p>
-    </div>
+    <a href="https://jexploitsession.zone.id/"><i class="fas fa-home"></i> Home</a>
+  
+    <a href="https://github.com/Ridz-coder01" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    <a href="https://t.me/Ridzcoder" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+    <a href="https://whatsapp.com/channel/0029Vb6eR1r05MUgYul6Pc2W" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Channel</a>
   </div>
 
-  <!-- Footer -->
-  <div class="footer">
-    <p>© 2026 Vinic Tech | Ultra Pro Max Edition</p>
-    <p>Contact <b>Vinic Tech Official</b> for Premium Support</p>
-    <div class="social-links">
-      <a href="https://youtube.com/@vinicmd" target="_blank"><i class="fab fa-youtube"></i></a>
-      <a href="https://www.instagram.com/vinicmd" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://t.me/vinic" target="_blank"><i class="fab fa-telegram"></i></a>
-      <a href="t.me/vinic" target="_blank"><i class="fab fa-github"></i></a>
-    </div>
+  <!-- ANIMATED BACKGROUND -->
+  <div class="animated-bg">
+    <div class="bg-gradient"></div>
+    <div class="particles" id="particles"></div>
+    <div class="pulse"></div>
   </div>
 
-  <!-- Particle.js -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <button class="menu-btn" onclick="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <a href="https://whatsapp.com/channel/0029Vb6eR1r05MUgYul6Pc2W" class="brand">
+      <i class="fas fa-robot logo-icon"></i>
+      <span class="logo-text">JEXPLOIT</span>
+    </a>
+    
+    <div style="width: 40px;"></div> <!-- Spacer for alignment -->
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="hero">
+    <h1 class="hero-title">Advanced WhatsApp Bot Solution</h1>
+    <p class="hero-subtitle">Powerful automation and integration features for WhatsApp with enhanced security and reliability. Experience seamless bot functionality with jexploit.</p>
+  </main>
+
+  <!-- PAIR CODE SECTION -->
+  <section class="pair-section">
+    <div class="pair-card">
+      <a href="https://whatsapp.com/channel/0029Vb73EYZFXUujAoHFor1i" target="_blank" class="channel-btn">
+        <i class="fab fa-whatsapp"></i> Channel
+      </a>
+      <h1>JEXPLOIT - PAIRING CODE</h1>
+      <p>Enter your WhatsApp number without the + sign</p>
+
+      <label for="number">Phone Number</label>
+      <input type="text" id="number" placeholder="e.g., 256xxxxxxxxxx" />
+      <button id="submit" class="pair-btn">GET CODE</button>
+
+      <div id="pair" style="margin-top:20px;"></div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features">
+    <h2 class="section-title">Key Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Pair Code Login</h3>
+        <p>Securely connect your WhatsApp using a simple pairing code without compromising your privacy.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Premium Support</h3>
+        <p>Get dedicated expert help anytime with our 24/7 support team for all your bot needs.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Regular Updates</h3>
+        <p>Stay updated with new features, security patches, and performance improvements.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Multi-Device</h3>
+        <p>Use the bot across multiple devices simultaneously without any restrictions.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Advanced Security</h3>
+        <p>Enterprise-grade encryption and security protocols to keep your data safe.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Plugin System</h3>
+        <p>Extend functionality with custom plugins and community-developed modules.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div>
+        <a href="https://whatsapp.com/channel/0029Vb6eR1r05MUgYul6Pc2W" class="footer-logo">
+          <i class="fas fa-robot footer-logo-icon"></i>
+          <span class="footer-logo-text">JEXPLOIT BOT</span>
+        </a>
+        <p class="footer-description">Advanced WhatsApp bot with powerful automation, multi-device support, and extensive customization options for enhanced user experience.</p>
+      </div>
+    </div>
+
+    <div class="footer-social">
+      <a href="https://github.com/Ridz-coder01" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://t.me/Ridzcoder" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://whatsapp.com/channel/0029Vb73EYZFXUujAoHFor1i" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://ridztechinc.zone.id" target="_blank"><i class="fas fa-globe"></i></a>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2024 - <span id="year"></span> KELVIN TECH INC — All Rights Reserved
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
-    // Advanced particle configuration
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 120, density: { enable: true, value_area: 800 } },
-        color: { value: ["#00ffcc", "#ff2e63", "#7209b7", "#4361ee"] },
-        shape: { 
-          type: ["circle", "triangle", "polygon"],
-          polygon: { nb_sides: 6 }
-        },
-        opacity: { 
-          value: 0.7, 
-          random: true,
-          anim: { enable: true, speed: 1, opacity_min: 0.2, sync: false }
-        },
-        size: { 
-          value: 3, 
-          random: true,
-          anim: { enable: true, speed: 4, size_min: 0.3, sync: false }
-        },
-        line_linked: {
-          enable: true,
-          distance: 150,
-          color: "#00ffcc",
-          opacity: 0.4,
-          width: 1.5
-        },
-        move: {
-          enable: true,
-          speed: 2,
-          direction: "none",
-          random: true,
-          straight: false,
-          out_mode: "out",
-          bounce: false,
-          attract: { enable: true, rotateX: 600, rotateY: 1200 }
-        }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" },
-          resize: true
-        },
-        modes: {
-          repulse: { distance: 100, duration: 0.4 },
-          push: { particles_nb: 4 }
-        }
-      },
-      retina_detect: true
+    // Sidebar toggle function
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("show");
+    }
+
+    // Preloader hide
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const preloader = document.getElementById("preloader");
+        preloader.style.opacity = "0";
+        setTimeout(() => preloader.style.display = "none", 300);
+      }, 500);
+      
+      // Set current year
+      document.getElementById('year').textContent = new Date().getFullYear();
+      
+      // Create particles
+      createParticles();
     });
 
-    // Add scroll animations
-    document.addEventListener('DOMContentLoaded', function() {
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
+    // Create animated particles
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random size between 2px and 6px
+        const size = Math.random() * 4 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Random position
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        // Random animation delay
+        particle.style.animationDelay = `${Math.random() * 15}s`;
+        
+        // Random animation duration
+        const duration = 10 + Math.random() * 20;
+        particle.style.animationDuration = `${duration}s`;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
 
-      const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+    // Close sidebar when clicking outside
+    document.addEventListener('click', (event) => {
+      const sidebar = document.getElementById('sidebar');
+      const menuBtn = document.querySelector('.menu-btn');
+      const closeBtn = document.querySelector('.close-btn');
+      
+      if (sidebar.classList.contains('show') && 
+          !sidebar.contains(event.target) && 
+          !menuBtn.contains(event.target) &&
+          !closeBtn.contains(event.target)) {
+        sidebar.classList.remove("show");
+      }
+    });
+
+    // Close sidebar when pressing Escape key
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        const sidebar = document.getElementById("sidebar");
+        if (sidebar.classList.contains("show")) {
+          sidebar.classList.remove("show");
+        }
+      }
+    });
+
+    // Pair code functionality
+    let a = document.getElementById("pair");
+    let b = document.getElementById("submit");
+    let c = document.getElementById("number");
+
+    async function Copy() {
+      let text = document.getElementById("copy").innerText;
+      let obj = document.getElementById("copy");
+      await navigator.clipboard.writeText(obj.innerText.replace('CODE: ', ''));
+      obj.innerText = "COPIED";
+      obj.style = "color:var(--accent);font-weight:bold";
+      setTimeout(() => {
+        obj.innerText = text;
+        obj.style = "color:var(--text);font-weight:bold";
+      }, 500);
+    }
+
+    b.addEventListener("click", async (e) => {
+      e.preventDefault();
+      if (!c.value) {
+        a.innerHTML = '<span style="color:var(--accent);font-weight:bold">Enter your WhatsApp number with a country code</span><br><br>';
+      } else if (c.value.replace(/[^0-9]/g, "").length < 11) {
+        a.innerHTML = '<span style="color:#ff6b6b;font-weight:bold">Invalid number format</span><br><br>';
+      } else {
+        const bc = c.value.replace(/[^0-9]/g, "");
+        let bb = "";
+        let bbc = "";
+        const cc = bc.split('');
+        cc.map(a => {
+          bbc += a;
+          if (bbc.length == 3) {
+            bb += " " + a;
+          } else if (bbc.length == 8) {
+            bb += " " + a;
+          } else {
+            bb += a;
           }
         });
-      }, observerOptions);
-
-      // Observe all feature cards and sections
-      document.querySelectorAll('.feature-card, .about, .contact, .hero').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        observer.observe(el);
-      });
+        c.type = "text";
+        c.value = "+" + bb;
+        c.style = "color:var(--text);font-size:18px";
+        a.innerHTML = '<span style="color:var(--accent);font-weight:bold">Please wait for some time</span><br><br>';
+        try {
+          let { data } = await axios(`/code?number=${bc}`);
+          let code = data.code || "Service Unavailable";
+          a.innerHTML = '<span id="copy" onclick="Copy()" style="color:var(--accent);font-weight:bold;cursor:pointer;padding:10px 20px;border-radius:8px;background:rgba(0,180,255,0.1);display:inline-block;">CODE: <span style="color:var(--text);font-weight:bold">' + code + '</span></span><br><br><br>';
+        } catch (err) {
+          a.innerHTML = '<span style="color:#ff6b6b;font-weight:bold">Error connecting to server</span><br><br>';
+        }
+      }
     });
+
+    // Register service worker for PWA
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js").catch(err => {
+          console.log("Service Worker registration failed:", err);
+        });
+      });
+    }
   </script>
 
-  <!-- GetButton.io widget -->
-  <script type="text/javascript">
-    (function () {
-      var options = {
-        sms: "+256755434075",
-        sms_color: "#129BF4",
-        whatsapp: "+256755434075",
-        telegram: "@vinic",
-        call_to_action: "Premium Support",
-        button_color: "#FF318E",
-        position: "left",
-        order: "sms,whatsapp,telegram",
-        pre_filled_message: "Hello Vinic Tech! I need assistance with the Ultra Pro Max version.",
-      };
-      var proto = 'https:', host = "getbutton.io", url = proto + '//static.' + host;
-      var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
-      s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
-      var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
-    })();
-  </script>
 </body>
 </html>
