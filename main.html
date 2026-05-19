@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>VESPER-XMD SESSION</title>
+  <title>June-X Ultra</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,10 +14,22 @@
     body {
       min-height: 100vh;
       margin: 0;
-      background-color: #0a0a1a;
+      background-color: #050a15;
+      background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       font-family: 'Exo 2', sans-serif;
-      color: #e0f2fe;
+      color: #e5f5f1;
       overflow-x: hidden;
+    }
+
+    .bg-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(5, 10, 21, 0.78);
+      z-index: 0;
     }
 
     .particle-canvas {
@@ -45,28 +57,28 @@
 
     .glow-circle:nth-child(1) {
       width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(100, 0, 255, 0.6) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0, 255, 170, 0.6) 0%, transparent 70%);
       top: -10%; left: -5%;
       animation-duration: 25s;
     }
 
     .glow-circle:nth-child(2) {
       width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(147, 51, 234, 0.5) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0, 100, 255, 0.5) 0%, transparent 70%);
       top: 50%; right: -10%;
       animation-duration: 30s; animation-delay: 3s;
     }
 
     .glow-circle:nth-child(3) {
       width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(139, 23, 182, 0.4) 0%, transparent 70%);
       bottom: -5%; left: 30%;
       animation-duration: 22s; animation-delay: 7s;
     }
 
     .glow-circle:nth-child(4) {
       width: 350px; height: 350px;
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0, 255, 255, 0.3) 0%, transparent 70%);
       top: 30%; left: 50%;
       animation-duration: 28s; animation-delay: 12s;
     }
@@ -86,8 +98,8 @@
         to bottom,
         transparent 0px,
         transparent 2px,
-        rgba(147, 51, 234, 0.015) 2px,
-        rgba(147, 51, 234, 0.015) 4px
+        rgba(0, 255, 170, 0.015) 2px,
+        rgba(0, 255, 170, 0.015) 4px
       );
       z-index: 1;
       pointer-events: none;
@@ -123,8 +135,8 @@
       width: 120px; height: 120px;
       border-radius: 50%;
       border: 3px solid transparent;
-      background: linear-gradient(#0a0a1a, #0a0a1a) padding-box,
-                  linear-gradient(135deg, #6400ff, #9333ea, #ec4899) border-box;
+      background: linear-gradient(#050a15, #050a15) padding-box,
+                  linear-gradient(135deg, #00ffaa, #0088ff, #8b17b6) border-box;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -138,8 +150,8 @@
       inset: -6px;
       border-radius: 50%;
       border: 2px solid transparent;
-      background: linear-gradient(#0a0a1a, #0a0a1a) padding-box,
-                  linear-gradient(135deg, #ec4899, #6400ff, #9333ea) border-box;
+      background: linear-gradient(#050a15, #050a15) padding-box,
+                  linear-gradient(135deg, #8b17b6, #00ffaa, #0088ff) border-box;
       animation: ringRotate 6s linear infinite reverse;
     }
 
@@ -150,7 +162,7 @@
 
     .logo-icon {
       font-size: 3rem;
-      background: linear-gradient(135deg, #6400ff, #9333ea, #ec4899);
+      background: linear-gradient(135deg, #00ffaa, #0088ff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -163,7 +175,7 @@
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 5px;
-      background: linear-gradient(135deg, #6400ff 0%, #9333ea 50%, #ec4899 100%);
+      background: linear-gradient(135deg, #00ffaa 0%, #0088ff 50%, #8b17b6 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -172,13 +184,13 @@
     }
 
     @keyframes titleGlow {
-      0% { filter: drop-shadow(0 0 10px rgba(100, 0, 255, 0.3)); }
-      100% { filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.5)); }
+      0% { filter: drop-shadow(0 0 10px rgba(0, 255, 170, 0.3)); }
+      100% { filter: drop-shadow(0 0 20px rgba(0, 136, 255, 0.5)); }
     }
 
     .tagline {
       font-size: 1.1rem;
-      color: rgba(224, 242, 254, 0.6);
+      color: rgba(229, 245, 241, 0.6);
       font-weight: 300;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -189,26 +201,26 @@
       align-items: center;
       gap: 8px;
       padding: 8px 20px;
-      background: rgba(147, 51, 234, 0.1);
-      border: 1px solid rgba(147, 51, 234, 0.3);
+      background: rgba(0, 255, 170, 0.1);
+      border: 1px solid rgba(0, 255, 170, 0.3);
       border-radius: 50px;
       margin-top: 1rem;
       font-size: 0.85rem;
       font-weight: 600;
-      color: #9333ea;
+      color: #00ffaa;
       letter-spacing: 1px;
     }
 
     .status-dot {
       width: 8px; height: 8px;
-      background: #9333ea;
+      background: #00ffaa;
       border-radius: 50%;
       animation: statusPulse 2s infinite;
     }
 
     @keyframes statusPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.5); }
-      50% { box-shadow: 0 0 0 6px rgba(147, 51, 234, 0); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 170, 0.5); }
+      50% { box-shadow: 0 0 0 6px rgba(0, 255, 170, 0); }
     }
 
     .stats-grid {
@@ -220,9 +232,9 @@
     }
 
     .stat-card {
-      background: rgba(20, 10, 40, 0.6);
+      background: rgba(10, 25, 47, 0.6);
       backdrop-filter: blur(15px);
-      border: 1px solid rgba(147, 51, 234, 0.15);
+      border: 1px solid rgba(0, 255, 170, 0.15);
       border-radius: 16px;
       padding: 1.5rem 1rem;
       text-align: center;
@@ -236,19 +248,19 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 3px;
-      background: linear-gradient(90deg, transparent, var(--accent, #9333ea), transparent);
+      background: linear-gradient(90deg, transparent, var(--accent, #00ffaa), transparent);
     }
 
     .stat-card:hover {
       transform: translateY(-5px);
-      border-color: rgba(147, 51, 234, 0.4);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(147, 51, 234, 0.1);
+      border-color: rgba(0, 255, 170, 0.4);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 255, 170, 0.1);
     }
 
     .stat-icon {
       font-size: 1.8rem;
       margin-bottom: 0.8rem;
-      background: linear-gradient(135deg, var(--accent, #9333ea), var(--accent2, #6400ff));
+      background: linear-gradient(135deg, var(--accent, #00ffaa), var(--accent2, #0088ff));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -264,16 +276,16 @@
 
     .stat-label {
       font-size: 0.75rem;
-      color: rgba(224, 242, 254, 0.5);
+      color: rgba(229, 245, 241, 0.5);
       text-transform: uppercase;
       letter-spacing: 1.5px;
       font-weight: 600;
     }
 
     .main-card {
-      background: rgba(20, 10, 40, 0.7);
+      background: rgba(10, 25, 47, 0.7);
       backdrop-filter: blur(20px);
-      border: 1px solid rgba(147, 51, 234, 0.2);
+      border: 1px solid rgba(0, 255, 170, 0.2);
       border-radius: 24px;
       padding: 2.5rem 2rem;
       width: 100%;
@@ -287,7 +299,7 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 4px;
-      background: linear-gradient(90deg, #6400ff, #9333ea, #ec4899, #6400ff);
+      background: linear-gradient(90deg, #00ffaa, #0088ff, #8b17b6, #00ffaa);
       background-size: 300% 100%;
       animation: gradientSlide 4s linear infinite;
     }
@@ -302,7 +314,7 @@
       font-size: 1.2rem;
       text-align: center;
       margin-bottom: 2rem;
-      color: rgba(224, 242, 254, 0.8);
+      color: rgba(229, 245, 241, 0.8);
       letter-spacing: 3px;
       text-transform: uppercase;
     }
@@ -322,7 +334,7 @@
       gap: 1rem;
       padding: 2rem 1.5rem;
       background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(147, 51, 234, 0.2);
+      border: 1px solid rgba(0, 255, 170, 0.2);
       border-radius: 16px;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -335,7 +347,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, var(--btn-color1, rgba(100, 0, 255, 0.1)), var(--btn-color2, rgba(147, 51, 234, 0.1)));
+      background: linear-gradient(135deg, var(--btn-color1, rgba(0, 255, 170, 0.1)), var(--btn-color2, rgba(0, 136, 255, 0.1)));
       opacity: 0;
       transition: opacity 0.4s ease;
     }
@@ -344,14 +356,14 @@
 
     .action-btn:hover {
       transform: translateY(-8px);
-      border-color: var(--btn-border, rgba(147, 51, 234, 0.5));
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px var(--btn-glow, rgba(147, 51, 234, 0.15));
+      border-color: var(--btn-border, rgba(0, 255, 170, 0.5));
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px var(--btn-glow, rgba(0, 255, 170, 0.15));
     }
 
     .btn-icon-wrap {
       width: 60px; height: 60px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--btn-color1, rgba(100, 0, 255, 0.2)), var(--btn-color2, rgba(147, 51, 234, 0.2)));
+      background: linear-gradient(135deg, var(--btn-color1, rgba(0, 255, 170, 0.2)), var(--btn-color2, rgba(0, 136, 255, 0.2)));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -361,7 +373,7 @@
 
     .btn-icon-wrap i {
       font-size: 1.5rem;
-      color: var(--btn-icon, #9333ea);
+      color: var(--btn-icon, #00ffaa);
     }
 
     .btn-title {
@@ -376,41 +388,41 @@
 
     .btn-desc {
       font-size: 0.8rem;
-      color: rgba(224, 242, 254, 0.5);
+      color: rgba(229, 245, 241, 0.5);
       position: relative;
       z-index: 1;
       text-align: center;
     }
 
     .action-btn.primary {
-      --btn-color1: rgba(100, 0, 255, 0.15);
-      --btn-color2: rgba(147, 51, 234, 0.15);
-      --btn-border: rgba(147, 51, 234, 0.5);
-      --btn-glow: rgba(147, 51, 234, 0.2);
-      --btn-icon: #9333ea;
-      border-color: rgba(147, 51, 234, 0.3);
+      --btn-color1: rgba(0, 255, 170, 0.15);
+      --btn-color2: rgba(0, 136, 255, 0.15);
+      --btn-border: rgba(0, 255, 170, 0.5);
+      --btn-glow: rgba(0, 255, 170, 0.2);
+      --btn-icon: #00ffaa;
+      border-color: rgba(0, 255, 170, 0.3);
       animation: cardPulse 3s infinite;
     }
 
     .action-btn.secondary {
-      --btn-color1: rgba(147, 51, 234, 0.15);
-      --btn-color2: rgba(236, 72, 153, 0.15);
-      --btn-border: rgba(236, 72, 153, 0.5);
-      --btn-glow: rgba(236, 72, 153, 0.2);
-      --btn-icon: #ec4899;
+      --btn-color1: rgba(0, 136, 255, 0.15);
+      --btn-color2: rgba(139, 23, 182, 0.15);
+      --btn-border: rgba(0, 136, 255, 0.5);
+      --btn-glow: rgba(0, 136, 255, 0.2);
+      --btn-icon: #0088ff;
     }
 
     .action-btn.tertiary {
-      --btn-color1: rgba(59, 130, 246, 0.15);
-      --btn-color2: rgba(100, 0, 255, 0.15);
-      --btn-border: rgba(59, 130, 246, 0.5);
-      --btn-glow: rgba(59, 130, 246, 0.2);
-      --btn-icon: #3b82f6;
+      --btn-color1: rgba(139, 23, 182, 0.15);
+      --btn-color2: rgba(255, 100, 100, 0.15);
+      --btn-border: rgba(139, 23, 182, 0.5);
+      --btn-glow: rgba(139, 23, 182, 0.2);
+      --btn-icon: #8b17b6;
     }
 
     @keyframes cardPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.2); }
-      50% { box-shadow: 0 0 0 8px rgba(147, 51, 234, 0); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 170, 0.2); }
+      50% { box-shadow: 0 0 0 8px rgba(0, 255, 170, 0); }
     }
 
     .deploy-section {
@@ -430,9 +442,9 @@
       align-items: center;
       gap: 1rem;
       padding: 1.2rem 1.5rem;
-      background: rgba(20, 10, 40, 0.6);
+      background: rgba(10, 25, 47, 0.6);
       backdrop-filter: blur(15px);
-      border: 1px solid var(--deploy-border, rgba(147, 51, 234, 0.15));
+      border: 1px solid var(--deploy-border, rgba(0, 255, 170, 0.15));
       border-radius: 14px;
       text-decoration: none;
       color: inherit;
@@ -446,19 +458,19 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 3px;
-      background: linear-gradient(90deg, transparent, var(--deploy-color, #9333ea), transparent);
+      background: linear-gradient(90deg, transparent, var(--deploy-color, #00ffaa), transparent);
     }
 
     .deploy-card:hover {
       transform: translateY(-4px);
-      border-color: var(--deploy-color, #9333ea);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 25px var(--deploy-glow, rgba(147, 51, 234, 0.1));
+      border-color: var(--deploy-color, #00ffaa);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 25px var(--deploy-glow, rgba(0, 255, 170, 0.1));
     }
 
     .deploy-icon {
       width: 50px; height: 50px;
       border-radius: 12px;
-      background: var(--deploy-bg, rgba(147, 51, 234, 0.1));
+      background: var(--deploy-bg, rgba(0, 255, 170, 0.1));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -467,7 +479,7 @@
 
     .deploy-icon i {
       font-size: 1.4rem;
-      color: var(--deploy-color, #9333ea);
+      color: var(--deploy-color, #00ffaa);
     }
 
     .deploy-icon img {
@@ -491,11 +503,11 @@
 
     .deploy-desc {
       font-size: 0.75rem;
-      color: rgba(224, 242, 254, 0.4);
+      color: rgba(229, 245, 241, 0.4);
     }
 
     .deploy-arrow {
-      color: var(--deploy-color, #9333ea);
+      color: var(--deploy-color, #00ffaa);
       font-size: 0.9rem;
       opacity: 0;
       transform: translateX(-5px);
@@ -516,9 +528,9 @@
     }
 
     .feature-card {
-      background: rgba(20, 10, 40, 0.5);
+      background: rgba(10, 25, 47, 0.5);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(147, 51, 234, 0.1);
+      border: 1px solid rgba(0, 255, 170, 0.1);
       border-radius: 16px;
       padding: 1.5rem;
       text-align: center;
@@ -526,14 +538,14 @@
     }
 
     .feature-card:hover {
-      border-color: rgba(147, 51, 234, 0.3);
+      border-color: rgba(0, 255, 170, 0.3);
       transform: translateY(-3px);
     }
 
     .feature-icon {
       font-size: 2rem;
       margin-bottom: 0.8rem;
-      background: linear-gradient(135deg, #6400ff, #9333ea);
+      background: linear-gradient(135deg, #00ffaa, #0088ff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -549,7 +561,7 @@
 
     .feature-desc {
       font-size: 0.8rem;
-      color: rgba(224, 242, 254, 0.5);
+      color: rgba(229, 245, 241, 0.5);
       line-height: 1.4;
     }
 
@@ -558,18 +570,18 @@
       padding: 1.5rem;
       width: 100%;
       max-width: 900px;
-      border-top: 1px solid rgba(147, 51, 234, 0.1);
-      color: rgba(224, 242, 254, 0.4);
+      border-top: 1px solid rgba(0, 255, 170, 0.1);
+      color: rgba(229, 245, 241, 0.4);
       font-size: 0.85rem;
     }
 
     .footer a {
-      color: #9333ea;
+      color: #00ffaa;
       text-decoration: none;
       transition: color 0.3s;
     }
 
-    .footer a:hover { color: #ec4899; }
+    .footer a:hover { color: #0088ff; }
 
     @media (max-width: 768px) {
       .title { font-size: 2rem; letter-spacing: 3px; }
@@ -592,6 +604,7 @@
   </style>
 </head>
 <body>
+  <div class="bg-overlay"></div>
   <div class="glowing-bg">
     <div class="glow-circle"></div>
     <div class="glow-circle"></div>
@@ -603,64 +616,13 @@
 
   <div class="page-wrapper">
     <section class="hero-section">
-      <div class="logo-container">
-        <div class="logo-ring">
-          <i class="fas fa-crown logo-icon"></i>
-        </div>
-      </div>
-      <h1 class="title">VESPER-XMD</h1>
+      <h1 class="title">June-X Ultra</h1>
       <p class="tagline">Next-Gen Session Generator</p>
       <div class="status-badge">
         <span class="status-dot"></span>
         <span id="serverStatus">ALL SYSTEMS OPERATIONAL</span>
       </div>
     </section>
-
-    <section class="stats-grid">
-      <div class="stat-card" style="--accent: #6400ff; --accent2: #9333ea;">
-        <div class="stat-icon"><i class="fas fa-users"></i></div>
-        <div class="stat-value" id="totalPairings">--</div>
-        <div class="stat-label">Total Sessions</div>
-      </div>
-      <div class="stat-card" style="--accent: #9333ea; --accent2: #ec4899;">
-        <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
-        <div class="stat-value" id="todayPairings">--</div>
-        <div class="stat-label">Today's Sessions</div>
-      </div>
-      <div class="stat-card" style="--accent: #ec4899; --accent2: #f43f5e;">
-        <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
-        <div class="stat-value" id="successRate">--%</div>
-        <div class="stat-label">Success Rate</div>
-      </div>
-      <div class="stat-card" style="--accent: #3b82f6; --accent2: #6400ff;">
-        <div class="stat-icon"><i class="fas fa-globe"></i></div>
-        <div class="stat-value" id="countriesServed">--</div>
-        <div class="stat-label">Countries</div>
-      </div>
-    </section>
-
-    <div class="stats-grid" style="margin-top: -0.5rem;">
-      <div class="stat-card" style="--accent: #f43f5e; --accent2: #f97316;">
-        <div class="stat-icon"><i class="fas fa-signal"></i></div>
-        <div class="stat-value" id="activeUsers">--</div>
-        <div class="stat-label">Online Now</div>
-      </div>
-      <div class="stat-card" style="--accent: #6400ff; --accent2: #3b82f6;">
-        <div class="stat-icon"><i class="fas fa-link"></i></div>
-        <div class="stat-value" id="codePairings">--</div>
-        <div class="stat-label">Code Pairs</div>
-      </div>
-      <div class="stat-card" style="--accent: #f97316; --accent2: #f43f5e;">
-        <div class="stat-icon"><i class="fas fa-qrcode"></i></div>
-        <div class="stat-value" id="qrPairings">--</div>
-        <div class="stat-label">QR Pairs</div>
-      </div>
-      <div class="stat-card" style="--accent: #9333ea; --accent2: #ec4899;">
-        <div class="stat-icon"><i class="fas fa-server"></i></div>
-        <div class="stat-value" id="uptime">--</div>
-        <div class="stat-label">Uptime (Days)</div>
-      </div>
-    </div>
 
     <div class="main-card">
       <h2 class="section-title">Get Started</h2>
@@ -675,7 +637,7 @@
           <span class="btn-title">QR Scan</span>
           <span class="btn-desc">Scan QR code to connect</span>
         </a>
-        <a href="https://github.com/Kevintech-hub/Vesper-Xmd" target="_blank" class="action-btn tertiary">
+        <a href="https://github.com/vinpink2/JUNE-X/fork" target="_blank" class="action-btn tertiary">
           <div class="btn-icon-wrap"><i class="fab fa-github"></i></div>
           <span class="btn-title">Source Code</span>
           <span class="btn-desc">View the project on GitHub</span>
@@ -683,87 +645,8 @@
       </div>
     </div>
 
-    <section class="deploy-section">
-      <div class="main-card">
-        <h2 class="section-title">Deploy Platforms</h2>
-        <div class="deploy-grid">
-          <a href="https://heroku.com/deploy?template=https://github.com/Kevintech-hub/Vesper-Xmd" target="_blank" class="deploy-card" style="--deploy-color: #8b5cf6; --deploy-bg: rgba(139, 92, 246, 0.1); --deploy-glow: rgba(139, 92, 246, 0.15); --deploy-border: rgba(139, 92, 246, 0.2);">
-            <div class="deploy-icon"><i class="fas fa-cube"></i></div>
-            <div class="deploy-info">
-              <div class="deploy-name">HEROKU</div>
-              <div class="deploy-desc">One-click cloud deployment with auto-scaling</div>
-            </div>
-            <i class="fas fa-arrow-right deploy-arrow"></i>
-          </a>
-
-          <a href="https://render.com/deploy?repo=https://github.com/Kevintech-hub/Vesper-Xmd" target="_blank" class="deploy-card" style="--deploy-color: #00e5a0; --deploy-bg: rgba(0, 229, 160, 0.1); --deploy-glow: rgba(0, 229, 160, 0.15); --deploy-border: rgba(0, 229, 160, 0.2);">
-            <div class="deploy-icon"><i class="fas fa-server"></i></div>
-            <div class="deploy-info">
-              <div class="deploy-name">RENDER</div>
-              <div class="deploy-desc">Free tier hosting with auto-deploy from GitHub</div>
-            </div>
-            <i class="fas fa-arrow-right deploy-arrow"></i>
-          </a>
-
-          <a href="https://platform.cypherx.space/" target="_blank" class="deploy-card" style="--deploy-color: #00d4ff; --deploy-bg: rgba(0, 212, 255, 0.1); --deploy-glow: rgba(0, 212, 255, 0.15); --deploy-border: rgba(0, 212, 255, 0.2);">
-            <div class="deploy-icon"><i class="fas fa-bolt"></i></div>
-            <div class="deploy-info">
-              <div class="deploy-name">CYPHERX PLATFORM</div>
-              <div class="deploy-desc">Bot hosting platform with web dashboard management</div>
-            </div>
-            <i class="fas fa-arrow-right deploy-arrow"></i>
-          </a>
-
-          <a href="https://bot-hosting.net/" target="_blank" class="deploy-card" style="--deploy-color: #ff6b6b; --deploy-bg: rgba(255, 107, 107, 0.1); --deploy-glow: rgba(255, 107, 107, 0.15); --deploy-border: rgba(255, 107, 107, 0.2);">
-            <div class="deploy-icon"><i class="fas fa-robot"></i></div>
-            <div class="deploy-info">
-              <div class="deploy-name">PANEL HOSTING</div>
-              <div class="deploy-desc">Pterodactyl panel-based bot hosting service</div>
-            </div>
-            <i class="fas fa-arrow-right deploy-arrow"></i>
-          </a>
-
-          <a href="https://replit.com/github/Kevintech-hub/Vesper-Xmd" target="_blank" class="deploy-card" style="--deploy-color: #f26522; --deploy-bg: rgba(242, 101, 34, 0.1); --deploy-glow: rgba(242, 101, 34, 0.15); --deploy-border: rgba(242, 101, 34, 0.2);">
-            <div class="deploy-icon"><i class="fas fa-code"></i></div>
-            <div class="deploy-info">
-              <div class="deploy-name">REPLIT</div>
-              <div class="deploy-desc">Browser-based IDE with instant deployment</div>
-            </div>
-            <i class="fas fa-arrow-right deploy-arrow"></i>
-          </a>
-
-          <a href="https://daki.cc/" target="_blank" class="deploy-card" style="--deploy-color: #a855f7; --deploy-bg: rgba(168, 85, 247, 0.1); --deploy-glow: rgba(168, 85, 247, 0.15); --deploy-border: rgba(168, 85, 247, 0.2);">
-            <div class="deploy-icon"><i class="fas fa-cloud-upload-alt"></i></div>
-            <div class="deploy-info">
-              <div class="deploy-name">DAKI.CC</div>
-              <div class="deploy-desc">Fast cloud hosting with instant bot deployment</div>
-            </div>
-            <i class="fas fa-arrow-right deploy-arrow"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="features-section">
-      <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-        <h3 class="feature-title">Encrypted</h3>
-        <p class="feature-desc">End-to-end encryption for all session data</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-rocket"></i></div>
-        <h3 class="feature-title">Lightning Fast</h3>
-        <p class="feature-desc">Session generation in under 30 seconds</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"><i class="fas fa-cloud"></i></div>
-        <h3 class="feature-title">Multi-Platform</h3>
-        <p class="feature-desc">Deploy on Heroku, Render, CypherX, or Panel</p>
-      </div>
-    </section>
-
     <footer class="footer">
-      <p>VESPER-XMD &copy; 2025 | <a href="https://github.com/Kevintech-hub/Vesper-Xmd" target="_blank">GitHub</a> | Secure Connection</p>
+      <p>JUNE-X &copy; 2025 | <a href="https://github.com/vinpink2/JUNE-X" target="_blank">GitHub</a> | Secure Connection</p>
     </footer>
   </div>
 
@@ -789,7 +672,7 @@
         this.speedX = (Math.random() - 0.5) * 0.5;
         this.speedY = (Math.random() - 0.5) * 0.5;
         this.opacity = Math.random() * 0.5 + 0.1;
-        this.color = ['rgba(100,0,255,', 'rgba(147,51,234,', 'rgba(236,72,153,'][Math.floor(Math.random() * 3)];
+        this.color = ['rgba(0,255,170,', 'rgba(0,136,255,', 'rgba(139,23,182,'][Math.floor(Math.random() * 3)];
       }
       update() {
         this.x += this.speedX;
@@ -818,7 +701,7 @@
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = 'rgba(147, 51, 234, ' + (0.08 * (1 - dist / 120)) + ')';
+            ctx.strokeStyle = 'rgba(0, 255, 170, ' + (0.08 * (1 - dist / 120)) + ')';
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -829,42 +712,6 @@
 
     animateParticles();
 
-    function animateValue(el, start, end, duration, suffix) {
-      suffix = suffix || '';
-      const range = end - start;
-      const startTime = performance.now();
-      function step(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.floor(start + range * eased);
-        el.textContent = current.toLocaleString() + suffix;
-        if (progress < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-
-    async function fetchStats() {
-      try {
-        const res = await fetch('/api/stats');
-        const data = await res.json();
-        animateValue(document.getElementById('totalPairings'), 0, data.totalPairings, 2000);
-        animateValue(document.getElementById('todayPairings'), 0, data.todayPairings, 1500);
-        animateValue(document.getElementById('successRate'), 0, parseFloat(data.successRate), 1800, '%');
-        animateValue(document.getElementById('countriesServed'), 0, data.countriesServed, 1600);
-        animateValue(document.getElementById('activeUsers'), 0, data.activeUsers, 1200);
-        animateValue(document.getElementById('codePairings'), 0, data.codePairings, 1800);
-        animateValue(document.getElementById('qrPairings'), 0, data.qrPairings, 1800);
-        animateValue(document.getElementById('uptime'), 0, data.uptimeDays, 2000);
-        document.getElementById('serverStatus').textContent =
-          data.serverStatus === 'operational' ? 'ALL SYSTEMS OPERATIONAL' : 'MAINTENANCE MODE';
-      } catch (e) {
-        document.getElementById('serverStatus').textContent = 'CONNECTING...';
-      }
-    }
-
-    fetchStats();
-    setInterval(fetchStats, 30000);
   </script>
 </body>
 </html>
