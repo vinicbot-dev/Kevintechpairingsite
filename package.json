@@ -1,7 +1,7 @@
 {
-  "name": "Vesper-Xmd-session",
+  "name": "Vesper-xmd-session",
   "description": "Vesper-Xmd WhatsApp Session Generator",
-  "main": "./voltah.js",
+  "main": "voltah.js",
   "engines": {
     "npm": ">=9.7.2",
     "node": ">=20.0.0"
@@ -9,19 +9,15 @@
   "scripts": {
     "start": "node voltah.js"
   },
-  "author": "JEXPLOITDEV",
-  "license": "GPL-3.0 license",
+  "author": "Giddy Tennor",
+  "license": "GPL-3.0",
   "dependencies": {
     "@whiskeysockets/baileys": "npm:wileys",
     "qrcode": "^1.5.4",
-    "awesome-phonenumber": "^7.8.0",
     "pino": "^10.3.1",
-    "phone": "^3.1.71",
     "body-parser": "^2.2.2",
-    "pastebin-js": "^1.0.6",
     "express": "^5.2.1",
-    "path": "^0.12.7",
-    "baileys-elite": "latest",
-    "jimp": "^0.16.13"
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
   }
 }
