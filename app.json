@@ -3,10 +3,21 @@
   "description": "Vesper-Xmd WhatsApp Session Generator - Next-Gen Pairing Service",
   "logo": "https://files.catbox.moe/lu3bqk.jpg",
   "repository": "https://github.com/Kevintech-hub/Vesper-Xmd",
-  "keywords": ["whatsapp", "session", "pairing", "june-x"],
+  "keywords": ["whatsapp", "session", "pairing", "vesper-xmd", "june-x"],
   "success_url": "/",
   "buildpacks": [
-    { "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" }
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "https://github.com/DuckyTeam/heroku-buildpack-imagemagick.git"
+    },
+    {
+      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+    },
+    {
+      "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
+    }
   ],
   "env": {
     "PORT": {
