@@ -41,7 +41,7 @@ router.get('/', async (req, res) => {
                                 logger: pino({
                                         level: "silent"
                                 }),
-                                browser: Browsers.ubuntu('Chrome'),
+                                browser: Browsers.ubuntu('edge'),
                         });
 
                         Qr_Code_By_Mbuvi_Tech.ev.on('creds.update', saveCreds)
@@ -57,13 +57,13 @@ router.get('/', async (req, res) => {
                                         let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
                                         await delay(800);
                                    let b64data = Buffer.from(data).toString('base64');
-                                   let session = await Qr_Code_By_Mbuvi_Tech.sendMessage(Qr_Code_By_Mbuvi_Tech.user.id, { text: 'Ultra-X:~' + b64data });
+                                   let session = await Qr_Code_By_Mbuvi_Tech.sendMessage(Qr_Code_By_Mbuvi_Tech.user.id, { text: 'VESPER-BOT:~' + b64data });
         
                                    let MBUVI_MD_TEXT = `
 ╔═══════════════════
 ║『 SESSION CONNECTED』
-║ 🟢  June x
-║ 🟢  supreme
+║ 🟢  Vesper-Xmd 
+║ 🟢  Kevin 
 ║ 🟢  base64
 ╚═══════════════════`;
          await Qr_Code_By_Mbuvi_Tech.sendMessage(Qr_Code_By_Mbuvi_Tech.user.id,{text:MBUVI_MD_TEXT},{quoted:session})
